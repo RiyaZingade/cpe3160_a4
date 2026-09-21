@@ -1,0 +1,10 @@
+{
+  "board": "NUCLEO-L476RG",
+  "device": "STM32L476RGT3",
+  "core": "Cortex-M4",
+  "order": 0,
+  "toolchain": "GCC",
+  "source": {
+    "sourceType": "STM32CubeIDE"
+  }
+}
