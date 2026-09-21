@@ -24,18 +24,9 @@
 	// set PC4-6 to output mode (columns)
 	COL_PORT->MODER &= ~(0x3F << (COL1*2));
 	COL_PORT->MODER |= (0x15 << (COL1*2));
-
-   	// while (1)
-   	// {
-	// 	int8_t value = keypad_func();
-	// 	if (value != -1) { // if a key is pressed
-	// 		int32_t led_value = (value << LED1);
-    //     	LED_PORT->ODR &= ~(LED_PINS);
-	// 		LED_PORT->ODR |= (led_value & LED_PINS);
-    //    	}
-	// }
 }
 
+// Returns the ASCII value of keypad button press, or -1 if no button pressed
 int8_t KEYPAD_getKey(void) {
 	uint8_t row = 0;
 	for (uint8_t col = 0; col < NUM_COLS; col++) {
