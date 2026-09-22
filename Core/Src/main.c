@@ -28,8 +28,6 @@ static int CheckPIN(const char input[]) {
         if (input[i] != current_pin[i]) {
 			return 0;
 		}
-
-		HAL_Delay(10);
     }
 	return 1;
 }
@@ -78,7 +76,6 @@ int main(void)
 
 				if ((input >= '0') && (input <= '9')) { // if a key 0-9 is pressed, not * or #
 				    LCD_WriteChar(input);
-					HAL_Delay(100);
 					input_pin[pin_index] = input;
 					pin_index++;
 				} else if (input == '*') {
@@ -88,6 +85,7 @@ int main(void)
 
 				if (input != -1) { // keypress detected
 				    while (KEYPAD_getKey() != -1) {} // wait until keypad is released before continuing
+					HAL_Delay(50);
 				}
 
 				if (pin_index == PIN_LENGTH) { // compare input_pin to current_pin
@@ -95,16 +93,17 @@ int main(void)
 						pin_index = 0;
 				        state = UNLOCKED;
 				        lcd_write_flag = 1;
+						HAL_Delay(500);
 				    } else { //invalid key
 						pin_index = 0;
 						lcd_write_flag = 1;
-						HAL_Delay(1000);
-						LCD_Command(CLEAR_DISPLAY);
 						LCD_Command(CURSOR_OFF);
+						HAL_Delay(500);
+						LCD_Command(CLEAR_DISPLAY);
 						LCD_WriteString("INVALID KEY:");
 						LCD_Command(LINE_TWO);
 						LCD_WriteString("TRY AGAIN");
-						HAL_Delay(2000); // display error message for 2 seconds
+						HAL_Delay(1000); // display error message for 1.5 seconds
 						LCD_Command(DISPLAY_ON); // turn cursor back on
 				    }
 				}
@@ -157,7 +156,7 @@ int main(void)
 
 				if((pin_value >= '0') && (pin_value <= '9')){ // 0-9 pressed
 				    LCD_WriteChar(pin_value);
-
+					HAL_Delay(5);
                     new_pin[pin_index] = pin_value;
                     pin_index++;
 				} else if (pin_value == '*') { // * is pressed
@@ -167,6 +166,7 @@ int main(void)
 
 				if (pin_value != -1) { // keypress detected
 				    while (KEYPAD_getKey() != -1) {} // wait until keypad is released before continuing
+					HAL_Delay(50);
 				}
 
                 if(pin_index == PIN_LENGTH){

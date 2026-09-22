@@ -107,7 +107,7 @@ target_link_options(${PROJECT_NAME} PUBLIC
         --specs=nano.specs
         -T${CMAKE_CURRENT_BINARY_DIR}/STM32L476RGTX_FLASH.ld
         --specs=nosys.specs
-        -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/A2.map
+        -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/P1.map
         -static
     >
 
@@ -116,7 +116,7 @@ target_link_options(${PROJECT_NAME} PUBLIC
         --specs=nano.specs
         -T${CMAKE_CURRENT_BINARY_DIR}/STM32L476RGTX_FLASH.ld
         --specs=nosys.specs
-        -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/A2.map
+        -Wl,-Map=${CMAKE_CURRENT_BINARY_DIR}/P1.map
         -static
     >
 
