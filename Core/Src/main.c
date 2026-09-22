@@ -23,7 +23,7 @@ typedef enum {
     CHANGE_PIN
 } state_t;
 
-static int CheckPIN(const int input[]) {
+static int CheckPIN(const char input[]) {
     for (int i = 0; i < PIN_LENGTH; i++) {
         if (input[i] != current_pin[i]) {
 			return 0;
