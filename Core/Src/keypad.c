@@ -32,7 +32,7 @@ static const char keys[4][3] = {
 
 // Returns the ASCII value of keypad button press, or -1 if no button pressed
 int8_t KEYPAD_getKey(void) {
-	uint8_t row = 0;
+	uint32_t row = 0;
 	for (uint8_t col = 0; col < NUM_COLS; col++) {
 		// set all columns to low
 		COL_PORT->ODR &= ~COL_PINS;
