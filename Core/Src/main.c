@@ -63,6 +63,7 @@ int main(void)
 	while(1) {
 		switch (state) {
 			case LOCKED: {
+			//common code block for clearing display and displaying intended message for specified state
 				if (lcd_write_flag == 1) {
 					GPIOA->ODR |= (1 << 5); // LED On
 					LCD_Command(CLEAR_DISPLAY);

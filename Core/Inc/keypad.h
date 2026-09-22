@@ -1,7 +1,7 @@
 /*******************************************************************************
  * @file           : lcd.h
- * @brief          : header for lcd.c file with function definitions and constants
- * 					 for LCD commands, ports, and pins
+ * @brief          : header for keypad.c file with function definitions and constants
+ * 					 for Keypad commands, ports, and pins
  *
  *******************************************************************************/
 
