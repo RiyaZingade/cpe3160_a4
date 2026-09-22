@@ -23,11 +23,13 @@ typedef enum {
     CHANGE_PIN
 } state_t;
 
-static int CheckPIN(const int input[]) {
+static int CheckPIN(const char input[]) {
     for (int i = 0; i < PIN_LENGTH; i++) {
         if (input[i] != current_pin[i]) {
 			return 0;
 		}
+
+		HAL_Delay(10);
     }
 	return 1;
 }
@@ -76,6 +78,7 @@ int main(void)
 
 				if ((input >= '0') && (input <= '9')) { // if a key 0-9 is pressed, not * or #
 				    LCD_WriteChar(input);
+					HAL_Delay(100);
 					input_pin[pin_index] = input;
 					pin_index++;
 				} else if (input == '*') {
@@ -95,7 +98,7 @@ int main(void)
 				    } else { //invalid key
 						pin_index = 0;
 						lcd_write_flag = 1;
-
+						HAL_Delay(1000);
 						LCD_Command(CLEAR_DISPLAY);
 						LCD_Command(CURSOR_OFF);
 						LCD_WriteString("INVALID KEY:");
