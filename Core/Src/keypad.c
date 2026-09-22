@@ -1,14 +1,18 @@
 /*******************************************************************************
- * @file           : lcd.c
- * @brief          : lcd program body providing functions to initialize the LCD
- * 					 and write commands/characters to the LCD display.
+ * @file           : keypad.c
+ * @brief          : keypad program body providing functions to initialize keypad
+ * 					 and keypad input reading function;
  *
  *******************************************************************************/
 
 #include "keypad.h"
 
-#define ASTERISK 0x2A
-#define POUND 0xA3
+static const char keys[4][3] = {
+    {'1','2','3'},
+    {'4','5','6'},
+    {'7','8','9'},
+    {'*','0','#'}
+};
 
  void KEYPAD_Init() {
     // turns on clock to GPIO bank C
@@ -43,24 +47,16 @@ int8_t KEYPAD_getKey(void) {
 		}
 		else { // check each row to see which one is high
 			if (row & (1 << ROW1)) {
-				return '0' + col + 1;
+				return keys[0][col];
 			}
 			else if (row & (1 << ROW2)) {
-				return '0' + col + 4;
+				return keys[1][col];
 			}
 			else if (row & (1 << ROW3)) {
-				return '0' + col + 7;
+				return keys[2][col];
 			}
 			else if (row & (1 << ROW4)) {
-				if (col == 0) { // col 0 = *
-					return (int8_t)'*';
-				}
-				else if (col == 1) { // col 1 = 0
-                    return (int8_t)'0';
-				}
-                else if (col == 2) { // col 2 = #
-                    return (int8_t)'#';
-                }
+			    return keys[3][col];
 			}
 		}
 	}
